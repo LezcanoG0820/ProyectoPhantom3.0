@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Bienvenido al gremio de ladrones</h1>
+    <p>Aqui podrás encontrar guias de cómo entender mejor la saga Persona.</p>
+
+    <h2>Juegos</h2>
+    <ul>
+      {% for category in categories %}
+        <li><a href="{% url 'category_detail' category.pk %}">{{ category.name }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <h2>Orden recomendado para empezar</h2>
+    <div class="row">
+      {% for product in featured_products %}
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">{{ product.description }}</p>
+              <p class="card-text">${{ product.price }}</p>
+              <a href="{% url 'product_detail' product.slug %}" class="btn btn-primary">Ver Detalles</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

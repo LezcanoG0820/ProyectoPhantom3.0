@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Categorías de Juegos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Categorías de Juegos</h1>
+    <ul>
+        {% for category in categories %}
+            <li>
+                <a href="{% url 'edit_game_category' category.pk %}">{{ category.name }}</a>
+                <a href="{% url 'delete_game_category' category.pk %}" class="text-danger">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_game_category' %}" class="btn btn-primary">Agregar Categoría</a>
+</div>
+{% endblock %}
